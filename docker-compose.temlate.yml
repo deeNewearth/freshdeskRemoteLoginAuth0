@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  remotelogin: 
+    build: .
+    image: labizbille/freshdeskremoteloginauth0:1.0
+#    command: ["tail", "-f", "/dev/null"]
+    command: ["npm","run","debug"]
+    volumes:
+      - ./src/:/src/
+    environment:
+      - "AUTH0_DOMAIN=TENANT.auth0.com"
+      - "AUTH0_CLIENTID="
+      - "AUTH0_CLIENTSECRET="
+      - "FD_SHARED_SECRET="
+      - "FD_URL=https://TENANT.freshdesk.com"
+
+    ports:
+      - 8091:80
+      - 9222:9222
+
